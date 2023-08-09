@@ -1,0 +1,96 @@
+<button
+  type="button"
+  class="btn btn-rounded"
+  [ngClass]="getClassOf()"
+  (click)="openModal(content, salida)"
+  [innerHTML]="getIconsOf()"
+>
+  {{ leyenda }}
+</button>
+
+<ng-template #content role="document" let-modal>
+  <div class="modal-header custom-header">
+    <h5 class="modal-title mt-0">Salida</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-hidden="true"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form
+      id="formsalidas"
+      name="formsalidas"
+      (ngSubmit)="guardar()"
+      [formGroup]="formularioGeneral"
+    >
+      <div class="mb-4" *ngIf="salida?.id">
+        <label for="id">ID:</label>
+        <input
+          id="id"
+          name="id"
+          type="text"
+          readonly="true"
+          class="form-control form-control-sm"
+          formControlName="id"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="nombre">Venta:</label>
+        <ng-select
+          formControlName="venta"
+          placeholder="Escriba o seleccione"
+          [ngClass]="{ 'is-invalid': esCampoInvalido('venta') }"
+        >
+          <ng-option *ngFor="let x of listVentas" [value]="x.id"
+            >No. {{ x.id }} -
+            {{ x.fechaVenta | date : "dd/MM/yyyy" }}</ng-option
+          >
+        </ng-select>
+
+        <div class="invalid-feedback">
+          <span *ngIf="esCampoInvalido('venta')">Seleccione una venta</span>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="nombre">Vehiculo:</label>
+        <ng-select
+          formControlName="vehiculo"
+          placeholder="Escriba o seleccione"
+          [ngClass]="{ 'is-invalid': esCampoInvalido('vehiculo') }"
+        >
+          <ng-option *ngFor="let x of listVehiculos" [value]="x.id"
+            >{{ x.marca }} / {{ x.modelo }} ({{ x.placa }})</ng-option
+          >
+        </ng-select>
+        <div class="invalid-feedback">
+          <span *ngIf="esCampoInvalido('vehiculo')">Seleccione un vehiculo</span>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="nombre">Municipio:</label>
+        <ng-select
+          formControlName="municipio"
+          placeholder="Escriba o seleccione"
+          [ngClass]="{'is-invalid': esCampoInvalido('municipio')}"
+        >
+          <ng-option *ngFor="let x of listMunicipios" [value]="x.id"
+            >{{ x.nombre }} ({{ x.zona.nombre }})</ng-option
+          >
+        </ng-select>
+        <div class="invalid-feedback">
+          <span *ngIf="esCampoInvalido('municipio')">Seleccione un municipio</span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer custom-modal">
+    <button class="btn btn-dark" type="submit" form="formsalidas">
+      Guardar
+    </button>
+    <button class="btn btn-secondary" (click)="modal.close('Close click')">
+      Cerrar
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,14 @@
+/* Estilo para navbar flotante con esquinas redondeadas */
+.navbar {
+  /* Hace que el navbar sea flotante */
+ top: 15px; /* Ajusta la posición superior según tus necesidades */
+ left: 2%; /* Ajusta la posición izquierda para centrar al 98% */
+ right: 0%; /* Ajusta la posición derecha para centrar al 98% */
+ width: 96%; /* Establece el ancho al 98% */
+ border-radius: 0.375rem;
+ margin-bottom: 30px;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+ background-color: #926C5F;
+
+}
+

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-sm-4">
+              <div class="search-box me-2 mb-2 d-inline-block">
+                <div class="position-relative">
+                  <button class="btn btn-success me-2" title="Descargar Excel" (click)="downloadExcel()"><i class="bi bi-file-earmark-spreadsheet"></i></button>
+                  <button class="btn btn-danger" title="Descargar PDF" (click)="downloadPdf()"><i class="bi bi-file-pdf"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-8">
+              <div class="text-sm-end">
+                <app-modal [leyenda]="'Nueva Salida'"></app-modal>
+              </div>
+            </div>
+            <!-- end col-->
+          </div>
+          <!-- Table data -->
+
+          <app-tabla
+            [salidas]="listSalida"
+            [queryString]="term"
+          ></app-tabla>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+        <app-grafica [chartData]="chartData"></app-grafica>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+</div>
+
